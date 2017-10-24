@@ -15,6 +15,14 @@
 <li> <a href="https://www.github.com/mratmartinez">git</a> </li> 
 </ul> 
 
-<iframe height='726' width='489' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://pgn4web-board.casaschi.net/?am=g&amp;d=1000&amp;ss=40&amp;ps=d&amp;pf=d&amp;lcs=W_iH&amp;dcs=AybO&amp;bbcs=$$$$&amp;hm=s&amp;hcs=RKim&amp;bd=h&amp;hd=j&amp;md=f&amp;tm=0&amp;fhcs=$$$$&amp;fhs=16&amp;fmcs=$$$$&amp;fccs=v71$&amp;hmcs=RKim&amp;fms=16&amp;fcs=m&amp;cd=i&amp;bcs=____&amp;fp=0&amp;hl=f&amp;fh=726&amp;fw=489&amp;pe=265$zlax9Rvlr2XiqTBqLSZuguueCM6WuUmo4p0K1BHAB0G3vkXYVCP6DKK_VWWuOmwilheKl8$z959$of151BHASUtGJ054coaZt2l8$GYCdCW__VblKTegCUuUjjQzvHKj2D4u4H_oOb2PmWQK_WKCTEG8s7_mUlvluX9pNmXX5HfICNV02LEG80otD64HZmf7t4coab8neBX1b9pNlsa2f8XFQBLrPFZqcRWsJSqIRWoMHTRotLRrqmGQTQVYtKcJy0dS02svuMrV6oI0V47b9n0'>your web browser and/or your host do not support iframes as required to display the chessboard</iframe>
+<link rel="stylesheet" href="https://s3.amazonaws.com/canvas-chess/source/pgn.min.css">
+<script src="https://s3.amazonaws.com/canvas-chess/source/canvaschess-0.1.0.min.js"></script>
+<script src="https://s3.amazonaws.com/canvas-chess/source/pgnviewer-0.1.0.min.js"></script>
+<script>
+    var viewer = new CHESS.PgnViewer({
+        pgn_uri: 'https://s3.amazonaws.com/canvas-chess/pgn/lasker_capablanca_1921.pgn',
+        piece_set: 'https://s3.amazonaws.com/canvas-chess/pieces/merida'
+    });
+</script>
 </body>
 </html>
