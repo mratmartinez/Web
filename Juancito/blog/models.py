@@ -10,7 +10,7 @@ from taggit.managers import TaggableManager
 
 class Blog(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
     post_date = models.DateField(default=date.today)
     updated = models.DateField(auto_now = True)
     text = models.TextField(max_length=10600)
