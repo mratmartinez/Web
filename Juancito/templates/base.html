@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/wingcss"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'juancito/style.css' %}" />
+    <title>{% block title %}La web de Juancito{% enblock %}</title> 
+</head>
+<body>
+    <header>
+        {% include "header.html" %}
+    </header>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
