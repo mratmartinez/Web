@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 from taggit.managers import TaggableManager
+from martor.models import MartorField
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class Blog(models.Model):
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
     post_date = models.DateField(default=date.today)
     updated = models.DateField(auto_now = True)
-    text = models.TextField(max_length=10600)
+    text = MartorField(max_length=10600)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = TaggableManager()
 

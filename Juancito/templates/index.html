@@ -1,10 +1,26 @@
 {% extends "base.html" %}
+{% load martortags %}
 
 {% block content %}
-    <h2>Posts</h2>
-    <div id="posts">
+    <div class="postlist">
+        <div class="row">
+            <div class="col">
+                <h2>Posts</h2>
+            </div>
+        </div>
         {% for post in blog_list %}
-        <h3>{{ post.title }}</h3>
+        <div class="post">
+            <div class="row">
+                <div class="col">
+                    <h3>{{ post.title }}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>{{ post.text|safe_markdown|truncatewords_html:30 }}</p>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}
