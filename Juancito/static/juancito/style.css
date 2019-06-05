@@ -38,13 +38,13 @@ p {
     color:#454545;
 }
 
-.postlist {
+#content {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.postlist h2 {
+h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
