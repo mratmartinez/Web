@@ -39,6 +39,8 @@ p {
 }
 
 .postlist {
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
@@ -46,9 +48,7 @@ p {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-.post {
-    display: inline-block;
-}
+
 .post h3 {
     margin-top: 1rem;
     margin-bottom: 0.6rem;
@@ -58,3 +58,12 @@ p {
     text-align: left;
 }
 
+.text {
+    display: inline-block;
+    margin-right: 12rem;
+    margin-left: 10rem;
+}
+
+.text code{
+    text-align: left;
+}

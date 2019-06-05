@@ -3,22 +3,12 @@
 
 {% block content %}
     <div class="postlist">
-        <div class="row">
-            <div class="col">
-                <h2>Posts</h2>
-            </div>
-        </div>
+        <h2>Posts</h2>
         {% for post in blog_list %}
         <div class="post">
-            <div class="row">
-                <div class="col">
-                    <h3>{{ post.title }}</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <p>{{ post.text|safe_markdown|truncatewords_html:30 }}</p>
-                </div>
+            <h3>{{ post.title }}</h3>
+            <div class="text">
+                <p>{{ post.text|safe_markdown|truncatewords_html:55 }}</p>
             </div>
         </div>
         {% endfor %}
