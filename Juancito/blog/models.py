@@ -1,3 +1,4 @@
+import os
 from datetime import date
 
 from django.db import models
@@ -10,8 +11,8 @@ from martor.models import MartorField
 # Create your models here.
 
 class Blog(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
+    title = models.CharField(max_length=170)
+    slug = models.SlugField(max_length=170, unique=True, null=True, blank=True)
     post_date = models.DateField(default=date.today)
     updated = models.DateField(auto_now = True)
     text = MartorField(max_length=10600)

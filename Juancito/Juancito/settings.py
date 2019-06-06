@@ -122,5 +122,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'assets'),
 ]
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+IMAGES_URL = os.path.join(MEDIA_URL, 'images')
+MARTOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'images')
+MARTOR_UPLOAD_URL = '/api/uploader/'
+MAX_IMAGE_UPLOAD_SIZE = 5242880  # 5MB
+
