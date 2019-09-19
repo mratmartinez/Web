@@ -60,11 +60,12 @@ h2 {
 
 .text {
     display: inline-block;
-    margin-right: 12rem;
-    margin-left: 10rem;
+    margin-right: 0 auto;
+    margin-left: 0 auto;
+    padding-right: 3em;
 }
 
 .text code{
     text-align: left;
-    margin-left: 3rem;
+    margin-left: 0 auto;
 }
