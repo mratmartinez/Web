@@ -1,6 +1,6 @@
 import glob
 import os
-from markdown import markdown
+import markdown
 from flask import Flask, render_template
 
 DEBUG = True
@@ -8,13 +8,17 @@ POSTS_FOLDER = "posts"
 SITE_NAME = 'La web de Juancito'
 
 app = Flask(__name__)
+md = markdown.Markdown(extensions=['fenced_code', 'meta'])
 
 def get_posts():
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
     posts = list()
     for i in filelist:
         with open(i, 'r') as file:
-            posts.append(markdown(file.read(), extensions=['fenced_code']))
+            html = md.convert(file.read())
+            post = md.Meta
+            post['content'] = html
+            posts.append(post)
     return posts
 
 @app.route('/')

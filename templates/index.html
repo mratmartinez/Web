@@ -7,7 +7,7 @@
         <div class="post">
 	    <!-- <a href=/{{ post.slug }}><h3>{{ post.title }}</h3></a> -->
             <div class="text">
-		    <p>{{ post|safe }}</p>
+		    <p>{{ post['content']|safe }}</p>
             </div>
         </div>
         {% endfor %}
