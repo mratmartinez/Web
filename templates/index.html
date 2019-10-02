@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h2>Posts</h2>
     <div class="postlist">
-        <h2>Posts</h2>
         {% for post in blog_list %}
-        <div class="post">
-	    <!-- <a href=/{{ post.slug }}><h3>{{ post.title }}</h3></a> -->
+        <div class="post postl">
+	    <a href=/post/{{ post['slug'] }}><h3>{{ post['title'][0] }}</h3></a>
             <div class="text">
-		    <p>{{ post['content']|safe }}</p>
+	        <p>{{ post['summary'][0] }}</p>
             </div>
         </div>
         {% endfor %}

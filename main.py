@@ -6,13 +6,15 @@ import markdown
 from slugify import slugify
 from flask import Flask, render_template
 
+app = Flask(__name__)
+md = markdown.Markdown(extensions=['fenced_code', 'meta', 'abbr', 'footnotes'])
+
 SITE_NAME = 'La web de Juancito'
 DEBUG = True
 POSTS_FOLDER = 'posts'
 CACHE_FOLDER = 'cache'
-
-app = Flask(__name__)
-md = markdown.Markdown(extensions=['fenced_code', 'meta'])
+STATIC_FOLDER = 'static'
+ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
 
 def load_cache():
     filelist = os.listdir(CACHE_FOLDER)
@@ -27,7 +29,7 @@ def load_cache():
             post_list.append(metadata)
     return post_list
 
-def get_posts(post_list):
+def update_posts(post_list):
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
     filename_filter = lambda item: item['filename'] == base_file
     for i in filelist:
@@ -50,6 +52,18 @@ def get_posts(post_list):
                 post_list.append(post)
     return post_list
 
+def get_posts_list(update=False):
+    posts = load_cache()
+    if update:
+        posts = update_posts(posts)
+    return posts
+
+def get_post_from_slug(slug):
+    slug_filter = lambda item: item['slug'] == slug
+    posts = get_posts_list()
+    post = next(filter(slug_filter, posts))
+    return post
+
 def save_to_cache(post_dict):
     meta = json.dumps(post_dict)
     filename = os.path.join(CACHE_FOLDER, post_dict['filename'][0:-3]) + '.json'
@@ -58,10 +72,17 @@ def save_to_cache(post_dict):
 
 @app.route('/')
 def index():
-    posts = load_cache()
-    posts = get_posts(posts)
+    posts = get_posts_list(True)
     return render_template("index.html", blog_list=posts)
+
+@app.route('/post/<slug>')
+def post(slug):
+    post = get_post_from_slug(slug)
+    return render_template("post.html", post=post)
 
 @app.route('/about')
 def about():
-    return 'This is my about page'
+    with open(ABOUT_FILE, 'r') as file:
+        data = file.read()
+        content = md.convert(data)
+    return render_template("about.html", content=content)
