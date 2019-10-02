@@ -48,10 +48,19 @@ h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+.post{
+    display: block;
+    margin: 0 auto;
+    width: 65%;
+}
 
+.postl{
+    border-top:0.125em solid #3C3E4F;
+    border-bottom:0.125em solid #3C3E4F;
+}
 .post h3 {
     margin-top: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.1rem;
 }
 
 .post p {
