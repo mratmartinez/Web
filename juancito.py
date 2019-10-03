@@ -7,7 +7,13 @@ from slugify import slugify
 from flask import Flask, render_template
 
 app = Flask(__name__)
-md = markdown.Markdown(extensions=['fenced_code', 'meta', 'abbr', 'footnotes'])
+md = markdown.Markdown(extensions=['fenced_code',
+                                   'meta',
+                                   'abbr',
+                                   'footnotes'],
+                      extension_configs={
+                          'footnotes': {
+                              'BACKLINK_TEXT': ''}}) # This is because of a bug
 
 SITE_NAME = 'La web de Juancito'
 DEBUG = True

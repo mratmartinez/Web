@@ -44,6 +44,16 @@ p {
     text-align: center;
 }
 
+#content a {
+    text-decoration: underline;
+}
+
+#content h4 {
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: left;
+}
+
 h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
