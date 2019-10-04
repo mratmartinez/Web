@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+
+    <title>{% block title %}La web de Juancito{% endblock %}</title>
+    <meta name="description" content="A simple web about a young dude.">
+
+    <!-- Search stuff -->
+    <meta name="robots" content="index,follow">
+    <!-- Tells Google not to show the sitelinks search box -->
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="google" content="notranslate">
+    <!-- Gives a general age rating based on the document's content -->
+    <meta name="rating" content="General">
+
+    <!-- Disable automatic detection and formatting of possible phone numbers -->
+    <meta name="format-detection" content="telephone=no">
+
     <link rel="stylesheet" href="https://unpkg.com/wingcss"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}" />
-    <title>{% block title %}La web de Juancito{% endblock %}</title> 
 </head>
 <body>
     <header>
