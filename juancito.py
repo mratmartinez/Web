@@ -79,7 +79,7 @@ def save_to_cache(post_dict):
 @app.route('/')
 def index():
     posts = get_posts_list(True)
-    return render_template("index.html", blog_list=posts)
+    return render_template("index.html", blog_list=reversed(posts))
 
 @app.route('/post/<slug>')
 def post(slug):
