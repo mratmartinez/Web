@@ -26,22 +26,18 @@ def slugify(string):
     return re.sub(r'[-\s]+', '-',
             (re.sub(r'[^\w\s-]', '',string).strip().lower()))
 
-def load_cache():
+def get_cache_files(folder):
     try:
-        filelist = os.listdir(CACHE_FOLDER)
+        files = os.listdir(folder)
     except FileNotFoundError:
-        os.mkdir(CACHE_FOLDER)
-        filelist = list()
-    # This one-liner does the same but I think that explicitly closing files is
-    # a better practice in those cases.
-    # [json.loads(open(os.path.join(CACHE_FOLDER, i), 'r').read()) for i in filelist]
-    post_list = list()
-    for i in filelist:
-        filename = os.path.join(CACHE_FOLDER, i)
-        with open(filename, 'r') as file:
-            metadata = json.loads(file.read())
-            post_list.append(metadata)
-    return post_list
+        os.mkdir(folder)
+        files = list()
+    return files
+
+def load_cache():
+    filelist = [os.path.join(CACHE_FOLDER, i) for i in get_cache_files(CACHE_FOLDER)]
+    postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
+    return postlist
 
 def update_posts(post_list):
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
