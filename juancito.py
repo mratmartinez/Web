@@ -2,8 +2,11 @@ import os
 import re
 import glob
 import json
+import string
+import locale
 import hashlib
 import markdown
+from datetime import datetime
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -21,6 +24,7 @@ POSTS_FOLDER = 'posts'
 CACHE_FOLDER = 'cache'
 STATIC_FOLDER = 'static'
 ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
+locale.setlocale(locale.LC_TIME, "es_AR")
 
 def slugify(string):
     return re.sub(r'[-\s]+', '-',
@@ -45,12 +49,22 @@ def get_file_data(filename):
         checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
     return data, checksum
 
+def format_date(datestring):
+    day = datetime.strptime(datestring, "%Y-%m-%d")
+    if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
+        formatted_day = day.strftime("%A %w de %B de %Y")
+        capitalized_day = string.capwords(formatted_day, " de ")
+    else:
+        capitalized_day = day.strftime("%c")
+    return capitalized_day
+
 def update_md(basefile, data, checksum):
     html = md.convert(data)
     post = md.Meta
     post['filename'] = basefile
     post['slug'] = slugify(post['title'][0])
     post['checksum'] = checksum
+    post['date'] = format_date(post['date'][0])
     post['content'] = html
     return post
 

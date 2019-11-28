@@ -96,3 +96,8 @@ h2 {
 .postlist a {
     text-decoration: none !important;
 }
+
+#date {
+    font-size: 1.2em;
+    text-align: right;
+}
