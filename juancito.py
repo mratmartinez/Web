@@ -7,6 +7,8 @@ import locale
 import hashlib
 import markdown
 from datetime import datetime
+
+import unidecode
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -26,9 +28,10 @@ STATIC_FOLDER = 'static'
 ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
 locale.setlocale(locale.LC_TIME, "es_AR")
 
-def slugify(string):
+def slugify(text):
+    ascii_text = unidecode.unidecode(text)
     return re.sub(r'[-\s]+', '-',
-            (re.sub(r'[^\w\s-]', '',string).strip().lower()))
+            (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
 
 def get_cache_files(folder):
     try:
