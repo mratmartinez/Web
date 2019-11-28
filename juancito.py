@@ -1,9 +1,9 @@
 import os
+import re
 import glob
 import json
 import hashlib
 import markdown
-from slugify import slugify
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -21,6 +21,10 @@ POSTS_FOLDER = 'posts'
 CACHE_FOLDER = 'cache'
 STATIC_FOLDER = 'static'
 ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
+
+def slugify(string):
+    return re.sub(r'[-\s]+', '-',
+            (re.sub(r'[^\w\s-]', '',string).strip().lower()))
 
 def load_cache():
     try:
