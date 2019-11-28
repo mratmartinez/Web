@@ -39,27 +39,31 @@ def load_cache():
     postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
     return postlist
 
+def get_file_data(filename):
+    with open(filename, 'r') as opened:
+        data = opened.read()
+        checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
+    return data, checksum
+
 def update_posts(post_list):
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
     filename_filter = lambda item: item['filename'] == base_file
     for i in filelist:
-        with open(i, 'r') as file:
-            data = file.read()
-            checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
-            if checksum not in [j['checksum'] for j in post_list]:
-                html = md.convert(data)
-                base_file = os.path.basename(i)
-                try:
-                    post_list.remove(next(filter(filename_filter, post_list)))
-                except StopIteration:
-                    pass # This means that this post isn't an update
-                post = md.Meta
-                post['filename'] = base_file
-                post['slug'] = slugify(post['title'][0])
-                post['checksum'] = checksum
-                post['content'] = html
-                save_to_cache(post)
-                post_list.append(post)
+        data, checksum = get_file_data(i)
+        if checksum not in [j['checksum'] for j in post_list]:
+            html = md.convert(data)
+            base_file = os.path.basename(i)
+            try:
+                post_list.remove(next(filter(filename_filter, post_list)))
+            except StopIteration:
+                pass # This means that this post isn't an update
+            post = md.Meta
+            post['filename'] = base_file
+            post['slug'] = slugify(post['title'][0])
+            post['checksum'] = checksum
+            post['content'] = html
+            save_to_cache(post)
+            post_list.append(post)
     return post_list
 
 def get_posts_list(update=False):
