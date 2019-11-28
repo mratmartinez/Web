@@ -23,7 +23,11 @@ STATIC_FOLDER = 'static'
 ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
 
 def load_cache():
-    filelist = os.listdir(CACHE_FOLDER)
+    try:
+        filelist = os.listdir(CACHE_FOLDER)
+    except FileNotFoundError:
+        os.mkdir(CACHE_FOLDER)
+        filelist = list()
     # This one-liner does the same but I think that explicitly closing files is
     # a better practice in those cases.
     # [json.loads(open(os.path.join(CACHE_FOLDER, i), 'r').read()) for i in filelist]
