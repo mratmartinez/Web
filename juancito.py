@@ -45,31 +45,35 @@ def get_file_data(filename):
         checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
     return data, checksum
 
-def update_posts(post_list):
+def update_md(basefile, data, checksum):
+    html = md.convert(data)
+    post = md.Meta
+    post['filename'] = basefile
+    post['slug'] = slugify(post['title'][0])
+    post['checksum'] = checksum
+    post['content'] = html
+    return post
+
+def check_new_posts(postlist):
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
-    filename_filter = lambda item: item['filename'] == base_file
+    filename_filter = lambda item: item['filename'] == basefile
     for i in filelist:
         data, checksum = get_file_data(i)
-        if checksum not in [j['checksum'] for j in post_list]:
-            html = md.convert(data)
-            base_file = os.path.basename(i)
+        if checksum not in [j['checksum'] for j in postlist]:
+            basefile = os.path.basename(i)
+            post = update_md(basefile, data, checksum)
             try:
-                post_list.remove(next(filter(filename_filter, post_list)))
+                postlist.remove(next(filter(filename_filter, postlist)))
             except StopIteration:
                 pass # This means that this post isn't an update
-            post = md.Meta
-            post['filename'] = base_file
-            post['slug'] = slugify(post['title'][0])
-            post['checksum'] = checksum
-            post['content'] = html
             save_to_cache(post)
-            post_list.append(post)
-    return post_list
+            postlist.append(post)
+    return postlist
 
 def get_posts_list(update=False):
     posts = load_cache()
     if update:
-        posts = update_posts(posts)
+        posts = check_new_posts(posts)
     return posts
 
 def get_post_from_slug(slug):
