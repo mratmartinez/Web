@@ -51,8 +51,9 @@ def get_file_data(filename):
 
 def format_date(datestring):
     day = datetime.strptime(datestring, "%Y-%m-%d")
+    print(datestring)
     if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
-        formatted_day = day.strftime("%A %w de %B de %Y")
+        formatted_day = day.strftime("%A %d de %B de %Y")
         capitalized_day = string.capwords(formatted_day, " de ")
     else:
         capitalized_day = day.strftime("%c")
