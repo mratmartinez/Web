@@ -90,3 +90,6 @@ ENV/
 
 # I hate when this happens on Vim
 *.swp
+
+# Cache folder
+cache/
