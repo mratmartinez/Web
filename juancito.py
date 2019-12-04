@@ -16,9 +16,8 @@ md = markdown.Markdown(extensions=['fenced_code',
                                    'meta',
                                    'abbr',
                                    'footnotes'],
-                      extension_configs={
-                          'footnotes': {
-                              'BACKLINK_TEXT': ''}}) # This is because of a bug
+                       # Because of a bug
+                       extension_configs={'footnotes': {'BACKLINK_TEXT': ''}})
 
 SITE_NAME = 'La web de Juancito'
 DEBUG = True
@@ -28,10 +27,12 @@ STATIC_FOLDER = 'static'
 ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
 locale.setlocale(locale.LC_TIME, "es_AR")
 
+
 def slugify(text):
     ascii_text = unidecode.unidecode(text)
     return re.sub(r'[-\s]+', '-',
-            (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
+                  (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
+
 
 def get_cache_files(folder):
     try:
@@ -41,16 +42,19 @@ def get_cache_files(folder):
         files = list()
     return files
 
+
 def load_cache():
     filelist = [os.path.join(CACHE_FOLDER, i) for i in get_cache_files(CACHE_FOLDER)]
     postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
     return postlist
+
 
 def get_file_data(filename):
     with open(filename, 'r') as opened:
         data = opened.read()
         checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
     return data, checksum
+
 
 def format_date(datestring):
     day = datetime.strptime(datestring, "%Y-%m-%d")
@@ -62,6 +66,7 @@ def format_date(datestring):
         capitalized_day = day.strftime("%c")
     return capitalized_day
 
+
 def update_md(basefile, data, checksum):
     html = md.convert(data)
     post = md.Meta
@@ -72,9 +77,10 @@ def update_md(basefile, data, checksum):
     post['content'] = html
     return post
 
+
 def check_new_posts(postlist):
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
-    filename_filter = lambda item: item['filename'] == basefile
+    filename_filter = lambda item: item['filename'] == basefile  # noqa
     for i in filelist:
         data, checksum = get_file_data(i)
         if checksum not in [j['checksum'] for j in postlist]:
@@ -83,10 +89,11 @@ def check_new_posts(postlist):
             try:
                 postlist.remove(next(filter(filename_filter, postlist)))
             except StopIteration:
-                pass # This means that this post isn't an update
+                pass  # This means that this post isn't an update
             save_to_cache(post)
             postlist.append(post)
     return postlist
+
 
 def get_posts_list(update=False):
     posts = load_cache()
@@ -94,11 +101,13 @@ def get_posts_list(update=False):
         posts = check_new_posts(posts)
     return posts
 
+
 def get_post_from_slug(slug):
-    slug_filter = lambda item: item['slug'] == slug
+    slug_filter = lambda item: item['slug'] == slug  # noqa
     posts = get_posts_list()
     post = next(filter(slug_filter, posts))
     return post
+
 
 def save_to_cache(post_dict):
     meta = json.dumps(post_dict)
@@ -106,15 +115,18 @@ def save_to_cache(post_dict):
     with open(filename, 'w') as cache:
         cache.write(meta)
 
+
 @app.route('/')
 def index():
     posts = get_posts_list(True)
     return render_template("index.html", blog_list=reversed(posts))
 
+
 @app.route('/post/<slug>')
 def post(slug):
     post = get_post_from_slug(slug)
     return render_template("post.html", post=post)
+
 
 @app.route('/about')
 def about():
