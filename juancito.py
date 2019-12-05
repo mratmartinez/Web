@@ -1,5 +1,6 @@
 import os
 import re
+import csv
 import glob
 import json
 import string
@@ -13,15 +14,17 @@ import unidecode
 from flask import Flask, render_template
 
 app = Flask(__name__)
-
-CONFIG_FILE = 'config.ini'
-
 config = configparser.ConfigParser()
+CONFIG_FILE = 'config.ini'
 config.read(CONFIG_FILE)
-md = markdown.Markdown(extensions=['meta',
-                                   'abbr',
-                                   'fenced_code',
-                                   'footnotes'],
+
+locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
+
+csv_parse = csv.reader([config['DEFAULT']['MarkdownExtensions']])
+MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
+del(csv_parse)
+
+md = markdown.Markdown(extensions=['meta']+MARKDOWN_EXTENSIONS,
                        # Because of a bug
                        extension_configs={'footnotes': {'BACKLINK_TEXT': ''}})
 
@@ -31,7 +34,6 @@ POSTS_FOLDER = config['FILESYSTEM']['PostsFolder']
 CACHE_FOLDER = config['FILESYSTEM']['CacheFolder']
 STATIC_FOLDER = config['FILESYSTEM']['StaticFolder']
 ABOUT_FILE = config['FILESYSTEM']['AboutFile']
-locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
 
 
 def slugify(text):
