@@ -59,6 +59,7 @@ def load_cache():
     postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
     return postlist
 
+
 def get_file_data(filename):
     """Read the contents of a post's file and return it along with its MD5 hash."""
     with open(filename, 'r') as opened:

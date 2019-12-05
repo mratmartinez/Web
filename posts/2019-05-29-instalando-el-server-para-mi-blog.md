@@ -1,11 +1,17 @@
 ---
-Title:   Algunas notas sobre el desarrollo de mi blog (Parte 1)
-Summary: Un artículo en el que amago con escribir cosas sobre este blog pero al final no digo (casi) nada al respecto.
-Author:  Juan Martínez
+Title:		Algunas notas sobre el desarrollo de mi blog (Parte 1)
+Summary:	Un artículo en el que amago con escribir cosas sobre este blog pero al final no digo (casi) nada al respecto.
+Author:		Juan Martínez
+Category:	Computers
+Tags:		Linux
+		Server
+		SSH
+		Web
+Language:	ES
 Date:    2019-05-29
 ---
 
-**Buenas noches**, es de magrugada y estoy empezando este blog (actualmente en Jekyll) porque tengo algo sobre que escribir.
+Buenas noches, es de magrugada y estoy empezando este blog (actualmente en Jekyll) porque tengo algo sobre que escribir.
 
 Hoy, después de cenar, mi mamá me regaló un VPS durante un año, el más simple que encontré, que es más que suficiente. Y como lo único que tengo es este feo sitio estático hosteado en Github Pages decidí que era un buen momento para programarme un blog propio, tal vez hecho en Flask o Django.
 
