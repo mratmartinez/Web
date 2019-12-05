@@ -23,8 +23,9 @@ Este es un excelente momento para aclarar que se pueden usar grillas sin usar Wi
 ### El Markdown
 
 Para el que no sabe lo que es el Makrdown, lo explico rápido y sencillo:  
-Makrdown es un lenguaje de marcado (como HTML) pero que en lugar de usar etiquetas como "<h1>Un header</h1>", usa alternativas que son más legibles para el ojo humano. Por ejemplo, para separar un parrafo de otro, se deja una línea en blanco. O para marcar un salto luego de una línea, se la finaliza con "  " (sí, dos espacios).  
-Me encanta la sintaxis para insertar links:
+Makrdown es un lenguaje de marcado (como HTML) pero que en lugar de usar etiquetas como `<h1>Esto es un header</h1>`, usa alternativas que son más legibles para el ojo humano. Por ejemplo, para separar un parrafo de otro, se deja una línea en blanco. O para marcar un salto luego de una línea, se la finaliza con `  ` (ya sé que no se ve una mierda, son dos espacios).  
+
+Personalmente, me encanta la sintaxis para insertar links:
 
 ~~~
 [Esto es un link a mi nuevo dominio](https://juanci.to)
@@ -40,7 +41,7 @@ Como verán, es una alternativa muy buena a escribir directamente en HTML, donde
 
 Me encanta BBCode y pensé en usarlo, pero no sé si por gusto o solo porque crecí escribiendo en foros donde eso era lo que único que se usaba. Pero siendo realista, escribir BBCode a mano es embolante al lado de Markdown. A parte, usar esta tecnología no fue mi decisión, yo simplemente quería un blog lo más sencillo posible y me creé uno en Jekyll.
 
-Jekyll es un generador de blogs estáticos. Está hecho en Ruby y lo único que tenés que hacer para que funcione es darle un archivo con un nombre como este: ´2018-05-14-instalando-el-vps-para-el-blog.md´ que incluya todo el texto de tu post en Markdown.
+Jekyll es un generador de blogs estáticos. Está hecho en Ruby y lo único que tenés que hacer para que funcione es darle un archivo con un nombre como este: `2018-05-14-instalando-el-vps-para-el-blog.md` que incluya todo el texto de tu post en Markdown.
 
 Mi idea era "transplantar" estos posts de Jekyll sin hacerme mucho drama con el formato, entonces lo que hice fue usar [django-markdown-editor](https://github.com/agusmakmun/django-markdown-editor), un plugin para Django que no solo permite tener un editor para markdown desde el admin, sino que también trae un template tag para renderizarlo a HTML sin ningún truco raro.  
 Para ser honesto, estuve sorprendido de que haya funcionado a la primera.
@@ -53,7 +54,7 @@ Decisión razonable o no, fue genial.
 Primero que nada, Flask es una huevada. Creo que cualquiera que sepa Python básico puede usarlo y no cuesta nada.  
 Flask no trae nada y eso es algo que para mí es muy divertido.
 
-Por ejemplo, para el temita del Markdown que mencioné recién probé 2 módulos que ya estaban hechos para Flask. Uno es [Flask-Misaka](https://flask-misaka.readthedocs.io/en/latest/) que la verdad que ya no recuerdo que problema tuve con ese, y el otro es [Flask-Markdown](https://pythonhosted.org/Flask-Markdown/) que se negaba a cargar la extensión ´fenced-code´ que para mí es importante.
+Por ejemplo, para el temita del Markdown que mencioné recién probé 2 módulos que ya estaban hechos para Flask. Uno es [Flask-Misaka](https://flask-misaka.readthedocs.io/en/latest/) que la verdad que ya no recuerdo que problema tuve con ese, y el otro es [Flask-Markdown](https://pythonhosted.org/Flask-Markdown/) que se negaba a cargar la extensión `fenced-code` que para mí es importante.
 
 #### ¿Qué tiene de bueno si no te anduvo nada?
 
