@@ -6,26 +6,32 @@ import string
 import locale
 import hashlib
 import markdown
+import configparser
 from datetime import datetime
 
 import unidecode
 from flask import Flask, render_template
 
 app = Flask(__name__)
-md = markdown.Markdown(extensions=['fenced_code',
-                                   'meta',
+
+CONFIG_FILE = 'config.ini'
+
+config = configparser.ConfigParser()
+config.read(CONFIG_FILE)
+md = markdown.Markdown(extensions=['meta',
                                    'abbr',
+                                   'fenced_code',
                                    'footnotes'],
                        # Because of a bug
                        extension_configs={'footnotes': {'BACKLINK_TEXT': ''}})
 
-SITE_NAME = 'La web de Juancito'
-DEBUG = True
-POSTS_FOLDER = 'posts'
-CACHE_FOLDER = 'cache'
-STATIC_FOLDER = 'static'
-ABOUT_FILE = os.path.join(STATIC_FOLDER, 'about.md')
-locale.setlocale(locale.LC_TIME, "es_AR")
+SITE_NAME = config['DEFAULT']['SiteName']
+DEBUG = config['DEFAULT']['Debug']
+POSTS_FOLDER = config['FILESYSTEM']['PostsFolder']
+CACHE_FOLDER = config['FILESYSTEM']['CacheFolder']
+STATIC_FOLDER = config['FILESYSTEM']['StaticFolder']
+ABOUT_FILE = config['FILESYSTEM']['AboutFile']
+locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
 
 
 def slugify(text):
