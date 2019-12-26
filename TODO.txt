@@ -1,0 +1,7 @@
+-Finish the tags system.
+-Finish the microblogging system.
+-Finish the bilingual system.
+-Finish writing the length-prefixing post.
+-^ Translate it.
+-Replace the current cache system with a better one.
+-Develop a way to post without having access to the server's filesystem. Maybe a WYSIWYG editor or something like that.
