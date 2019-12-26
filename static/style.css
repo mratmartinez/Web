@@ -101,3 +101,17 @@ h2 {
     font-size: 1.2em;
     text-align: right;
 }
+
+#tags {
+    display: inline;
+    list-style: none;
+    padding: 0px;
+}
+
+#tags li {
+    display: inline;
+}
+
+#tags li::after {
+    display: inline;
+}
