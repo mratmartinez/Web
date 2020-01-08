@@ -24,8 +24,8 @@ En un principio elegí [Pure](http://purecss.io), pero al final me decidí por o
 Como soy un asco con todo lo que involucre diseñar cosas bonitas tuve un mambo confuso para elegir entre cuando usar Flex y cuando usar el Grid de Wing.  
 Usé [esta guía](https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412) para saber qué decisión tomar.  
 En caso de que no tengas ganas de leer (en inglés), la hago corta:  
-    *Flex: Para cuando tenés que poner una sola cosa en un solo lugar. Se achica o agranda según sea necesario.  
-    *Grid: Si tenés que poner bocha de cosas en fila. Las mueve sin que quede todo un desastre.
+    * Flex: Para cuando tenés que poner una sola cosa en un solo lugar. Se achica o agranda según sea necesario.  
+    * Grid: Si tenés que poner bocha de cosas en fila. Las mueve sin que quede todo un desastre.
 
 Este es un excelente momento para aclarar que se pueden usar grillas sin usar Wing, Bootstrap, Pure o cualquier otra chota [(fuera de joda hay un framework de CSS que se llama así)](https://jenil.github.io/chota/), utilizando las grillas nativas de CSS. De hecho, todos estos frameworks están hechos encima de ese sistema pero solo adaptado a clases para que sea más sencillo usarlos y no tengas que entender los conceptos necesarios para usar las que vienen por defecto. Es decir, si te interesa aprender más de frontend o tu proyecto no es lo suficientemente grande como para usar Bootstrap, se recomienda usar las que vienen por defecto. Como mi proyecto no es gran cosa y por ahora no quiero saber más de frontend, voy a seguir usando Wing. Pero algún día, si me despierto inspirado, aprenderé a usar las grillas de CSS y dejaré linda mi web.
 
@@ -83,7 +83,7 @@ Probablemente te estés preguntando, ¿cuál es el punto de este post?
 Nada. La verdad que hice esta web porque no puede ser programador y no tener una, así que me da un poco de seguridad a la hora de ponerme a mandar CVs.
 
 Tengo 3 planes con este blog para el futuro:  
-1) Comenzar una serie de posts sobre como aprender (aunque sea una base) de programación. Tengo muchas amistades a las que me gustaría apuntar en eso.  
-2) Escribir sobre Mapuche. Es una gilada pero me entretiene.  
-3) Ponerlo en mi CV y buscar laburo. Si estás viendo esto y me podés ofrecer un puesto:
+1. Comenzar una serie de posts sobre como aprender (aunque sea una base) de programación. Tengo muchas amistades a las que me gustaría apuntar en eso.  
+2. Escribir sobre Mapuche. Es una gilada pero me entretiene.  
+3. Ponerlo en mi CV y buscar laburo. Si estás viendo esto y me podés ofrecer un puesto:
 ![](/static/help.jpg)

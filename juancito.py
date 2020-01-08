@@ -22,6 +22,7 @@ locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
 
 csv_parse = csv.reader([config['DEFAULT']['MarkdownExtensions']])
 MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
+print(MARKDOWN_EXTENSIONS)
 del(csv_parse)
 
 md = markdown.Markdown(extensions=['meta']+MARKDOWN_EXTENSIONS,
