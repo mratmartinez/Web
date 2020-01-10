@@ -1,6 +1,6 @@
 ---
 Title:          Cosas que el blog debería tener.
-Summary:        Un post sobre la clase de huevadas que quiero hostear.
+Summary:        Un post sobre la clase de huevadas que quiero hostear. English TL;DR at the end of the post.
 Author:         Juan Martínez
 Category:       Computers
 Tags:           Web
@@ -70,3 +70,19 @@ Eso la tranquilidad de saber que no tengo que pagar AWS.
 
 Y termino el post acá nomás porque me importa todo un carajo.  
 Procuraré escribir un post nuevo cada 2 meses. Es una banda eso para mí, no me apuren.
+
+
+### English TL;DR
+
+In case you are reading this and wondering what the hell I'm talking about because it's written in spanish with a lot of slang:
+
+1. More features for this web! Once I finish all of these things I'll start posting in english too. Stay tuned!  
+2. Some directives about how this blog will be developed (without hundreds of dependencies, as little Javascript as possible) and what to expect from it.
+3. What I didn't write in the spanish section: I'll be hosting my own Git here, so I can ditch Github, and there'll be a post about how to do that.
+
+Here are some posts I expect to write, *both in spanish and english*, in the (not that near) future:
+
+* One about hosting your own e-mail service.
+* Docker best practices.
+* A post about why PyQt is better than C++ Qt and how to port your widgets from the later to Python.
+* **A lot** of posts about nice stuff on Linux. Arch and Gentoo users, stay tuned you too!
