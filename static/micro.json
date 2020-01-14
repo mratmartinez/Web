@@ -1,0 +1,17 @@
+[
+	{
+		"date":	"2019/12/26",
+		"desc":	"Un artículo que sabe expresar mi odio hacia los frameworks",
+		"link":	"http://tomasp.net/blog/2015/library-frameworks/"
+	},
+	{
+		"date":	"2019/12/26",
+		"desc":	"Un artículo sobre por qué mi web sin Javascript es mejor que la tuya",
+		"link":	"https://volument.com/blog/minimalism-the-most-undervalued-development-skill"
+	},
+	{
+		"date":	"2019/12/26",
+		"desc": "Un post del desarrollador de Sway incitando a la gente a tener un blog, ofreciendo 20 dólares como recompensa",
+		"link": "https://drewdevault.com/make-a-blog"
+	}
+]
