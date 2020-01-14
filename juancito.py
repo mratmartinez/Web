@@ -13,16 +13,30 @@ from datetime import datetime
 import unidecode
 from flask import Flask, render_template
 
+from utils import logger
+
 app = Flask(__name__)
 config = configparser.ConfigParser()
 CONFIG_FILE = 'config.ini'
 config.read(CONFIG_FILE)
 
-locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
+
+# Is this debug?
+DEBUG = config.getboolean('DEFAULT','Debug')
+if DEBUG == True:
+    logger.setLevel(10)
+else:
+    logger.setLevel(20)
+
+# Working locale
+LOCALE = config['DEFAULT']['Locale']
+logger.info(LOCALE)
+locale.setlocale(locale.LC_TIME, LOCALE)
+
 
 csv_parse = csv.reader([config['DEFAULT']['MarkdownExtensions']])
 MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
-print(MARKDOWN_EXTENSIONS)
+logger.info(MARKDOWN_EXTENSIONS)
 del(csv_parse)
 
 md = markdown.Markdown(extensions=['meta']+MARKDOWN_EXTENSIONS,
@@ -30,7 +44,6 @@ md = markdown.Markdown(extensions=['meta']+MARKDOWN_EXTENSIONS,
                        extension_configs={'footnotes': {'BACKLINK_TEXT': ''}})
 
 SITE_NAME = config['DEFAULT']['SiteName']
-DEBUG = config['DEFAULT']['Debug']
 POSTS_FOLDER = config['FILESYSTEM']['PostsFolder']
 CACHE_FOLDER = config['FILESYSTEM']['CacheFolder']
 STATIC_FOLDER = config['FILESYSTEM']['StaticFolder']
@@ -51,6 +64,7 @@ def get_cache_files(folder):
     except FileNotFoundError:
         os.mkdir(folder)
         files = list()
+    logger.debug(files)
     return files
 
 
