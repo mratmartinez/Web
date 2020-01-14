@@ -97,21 +97,28 @@ h2 {
     text-decoration: none !important;
 }
 
+/* Date formatting */
 #date {
-    font-size: 1.2em;
-    text-align: right;
+	font-size: 1.2em;
+	text-align: center;
 }
 
+/* Tags formatting NOT WORKING */
 #tags {
-    display: inline;
-    list-style: none;
-    padding: 0px;
+	display: inline;
+	list-style: none;
+	padding: 0px;
 }
+#tags li { display: inline; }
+#tags li::after { display: inline; }
 
-#tags li {
-    display: inline;
-}
-
-#tags li::after {
-    display: inline;
+/* Lists formatting */
+#content ul, ol { text-align: left; }
+#content ul { list-style-type: square; }
+#content ol { counter-reset: item; }
+#content ol li { display: block }
+#content ol li:before {
+	content: counter(item) ". ";
+	counter-increment: item;
+	font-weight: bold;
 }
