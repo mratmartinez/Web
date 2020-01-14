@@ -102,7 +102,7 @@ def update_md(basefile, data, checksum):
     post['filename'] = basefile
     post['slug'] = slugify(post['title'][0])
     post['checksum'] = checksum
-    post['date'] = format_date(post['date'][0])
+    post['form_date'] = format_date(post['date'][0])
     post['content'] = html
     return post
 
