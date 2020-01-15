@@ -85,6 +85,7 @@ def get_file_data(filename):
 
 def format_date(datestring):
     """Returns a properly formatted date according to the language used."""
+    logger.debug(datestring)
     day = datetime.strptime(datestring, "%Y-%m-%d")
     if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
         # In case we are displaying the web in spanish.
@@ -102,7 +103,8 @@ def update_md(basefile, data, checksum):
     post['filename'] = basefile
     post['slug'] = slugify(post['title'][0])
     post['checksum'] = checksum
-    post['form_date'] = format_date(post['date'][0])
+    post['date'] = post['date'][0]  # For some reason Markdown meta adds an inner list
+    post['form_date'] = format_date(post['date'])
     post['content'] = html
     return post
 
@@ -136,6 +138,12 @@ def check_new_posts(postlist):
     return postlist
 
 
+def sort_posts_by_date(postlist):
+    post_filter = lambda item: datetime.strptime(item['date'], "%Y-%m-%d")
+    postlist = sorted(postlist, key=post_filter) 
+    logger.debug([post['date'] for post in postlist])
+    return postlist
+
 def get_posts_list(update=False):
     """
     Loads only the cached posts, unless the 'update' flag is True.
@@ -144,7 +152,8 @@ def get_posts_list(update=False):
     posts = load_cache()
     if update:
         posts = check_new_posts(posts)
-    return posts
+    postlist = sort_posts_by_date(posts)
+    return postlist
 
 
 def get_post_from_slug(slug):
