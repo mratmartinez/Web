@@ -75,11 +75,11 @@ p {
     text-decoration: none !important;
 }
 
-.postl {
+.postlist-item {
     border-top: 0.125em solid #3C3E4F;
 }
 
-.postl:last-child {
+.postlist-item:last-child {
     border-bottom: 0.125em solid #3C3E4F;
 }
 

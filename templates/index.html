@@ -4,7 +4,7 @@
     <h2>Posts</h2>
     <div class="postlist">
         {% for post in blog_list %}
-        <div class="post postl">
+        <div class="post postlist-item">
 	    <a href=/post/{{ post['slug'] }}><h3>{{ post['title'][0] }}</h3></a>
             <div class="text">
 	        <p>{{ post['summary'][0] }}</p>
