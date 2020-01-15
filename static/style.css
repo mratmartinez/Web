@@ -5,6 +5,10 @@ html {
     padding:0
 }
 
+.center {
+    justify-content:center
+}
+
 body {
     letter-spacing: 0.01em;
     font-size: 1.44rem;
@@ -16,7 +20,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 body, h6 {
-    line-height: 1.3em;
+    line-height: 1.2lh;
 }
 
 h1, h2, h3 {
@@ -41,11 +45,15 @@ p {
 
 /* Nav */
 .nav {
+    display: flex;
     text-indent: 1.8rem;
     border-top: 0.125em solid #3C3E4F;
     border-bottom: 0.125em solid #3C3E4F;
     padding-top: 0;
     padding-bottom: 0;
+    position: relative;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .nav-logo {
@@ -153,32 +161,59 @@ pre>code {
 #tags li::after { display: inline; }
 
 /* Lists formatting */
+#content li { margin-top: 0.9rem; }
 #content ul, ol { text-align: left; }
 #content ul { list-style-type: square; }
+#content ul li { margin-left: 1.7rem; }
 #content ol { counter-reset: item; }
-#content ol li { display: block }
+#content ol li { display: block; }
 #content ol li:before {
 	content: counter(item) ". ";
 	counter-increment: item;
 	font-weight: bold;
 }
 
-/* Responsive */
+/* Responsive Design */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.row {
+ display:flex;
+ flex-flow:row wrap;
+ justify-content:space-between
+}
+.row>:first-child {
+ margin-left:0
+}
+.row>:last-child {
+ margin-right:0
+}
+
 @media screen and (min-width:550px) {
     h1 {
-        font-size:5rem
+        font-size:4rem
     }
     h2 {
-        font-size:4.2rem
+        font-size:3.4rem
     }
     h3 {
-        font-size:3.6rem
+        font-size:3rem
     } 
     h4 {
-        font-size:3rem
+        font-size:2.4rem
     }
     h5 {
-        font-size:2.4rem
+        font-size:2rem
     }
     h6 {
         font-size:1.5rem
