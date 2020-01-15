@@ -83,7 +83,12 @@ Probablemente te estés preguntando, ¿cuál es el punto de este post?
 Nada. La verdad que hice esta web porque no puede ser programador y no tener una, así que me da un poco de seguridad a la hora de ponerme a mandar CVs.
 
 Tengo 3 planes con este blog para el futuro:  
+
 1. Comenzar una serie de posts sobre como aprender (aunque sea una base) de programación. Tengo muchas amistades a las que me gustaría apuntar en eso.  
 2. Escribir sobre Mapuche. Es una gilada pero me entretiene.  
 3. Ponerlo en mi CV y buscar laburo. Si estás viendo esto y me podés ofrecer un puesto:
+
 ![](/static/help.jpg)
+
+
+**UPDATE**: Me mudé a Buenos Aires y el día que llegué conseguí un laburo de DevOps Engineer. Me siento como Will Smith en esa peli pero sin el hijo. O sea, mejor que Will Smith.
