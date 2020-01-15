@@ -14,16 +14,25 @@ body {
     font-size: 1.44rem;
 }
 
-body, h1, h2, h3, h4, h5, h6 {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: inherit;
     font-family: -apple-system,BlinkMacSystemFont,Avenir,"Avenir Next","Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
 }
 
-body, h6 {
+body,
+h6 {
     line-height: 1.2lh;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     letter-spacing: -.1rem;
 }
 
@@ -190,34 +199,34 @@ pre>code {
 
 .row {
  display:flex;
- flex-flow:row wrap;
- justify-content:space-between
+ flex-flow: row wrap;
+ justify-content: space-between;
 }
 .row>:first-child {
- margin-left:0
+ margin-left: 0;
 }
 .row>:last-child {
- margin-right:0
+ margin-right: 0;
 }
 
 @media screen and (min-width:550px) {
     h1 {
-        font-size:4rem
+        font-size: 4rem;
     }
     h2 {
-        font-size:3.6rem
+        font-size: 3.6rem;
     }
     h3 {
-        font-size:3rem
+        font-size: 3rem;
     } 
     h4 {
-        font-size:2.4rem
+        font-size: 2.4rem;
     }
     h5 {
-        font-size:2rem
+        font-size: 2rem;
     }
     h6 {
-        font-size:1.5rem
+        font-size: 1.5rem;
     }
 }
 
