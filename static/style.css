@@ -109,6 +109,7 @@ p {
 .post h3 {
     margin-top: 1rem;
     margin-bottom: 0.1rem;
+    border-top: 0.025em solid #3C3E4F;
 }
 
 .post p {
@@ -144,10 +145,10 @@ pre>code {
     word-wrap: break-word;
 }
 
-
 /* Date formatting */
 #date {
 	font-size: 1.2em;
+    margin-bottom: 0;
 	text-align: center;
 }
 
@@ -204,7 +205,7 @@ pre>code {
         font-size:4rem
     }
     h2 {
-        font-size:3.4rem
+        font-size:3.6rem
     }
     h3 {
         font-size:3rem
