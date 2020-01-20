@@ -16,14 +16,13 @@ from flask import Flask, render_template
 from utils import logger
 
 app = Flask(__name__)
-config = configparser.ConfigParser()
 CONFIG_FILE = 'config.ini'
+config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
-
 # Is this debug?
-DEBUG = config.getboolean('DEFAULT','Debug')
-if DEBUG == True:
+DEBUG = config.getboolean('DEFAULT', 'Debug')
+if DEBUG is True:
     logger.setLevel(10)
 else:
     logger.setLevel(20)
@@ -51,14 +50,18 @@ ABOUT_FILE = config['FILESYSTEM']['AboutFile']
 
 
 def slugify(text):
-    """Returns a slug string valid for URLs."""
+    """
+    Returns a slug string valid for URLs.
+    """
     ascii_text = unidecode.unidecode(text)
     return re.sub(r'[-\s]+', '-',
                   (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
 
 
 def get_cache_files(folder):
-    """List the files in a folder. If the folder doesn't exists, it creates it."""
+    """
+    List the files in a folder. If the folder doesn't exists, it creates it.
+    """
     try:
         files = os.listdir(folder)
     except FileNotFoundError:
@@ -69,14 +72,19 @@ def get_cache_files(folder):
 
 
 def load_cache():
-    """Read the posts in CACHE_FOLDER and returns a list with the results."""
-    filelist = [os.path.join(CACHE_FOLDER, i) for i in get_cache_files(CACHE_FOLDER)]
+    """
+    Read the posts in CACHE_FOLDER and returns a list with the results.
+    """
+    cachefiles = get_cache_files(CACHE_FOLDER)
+    filelist = [os.path.join(CACHE_FOLDER, i) for i in cachefiles]
     postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
     return postlist
 
 
 def get_file_data(filename):
-    """Read the contents of a post's file and return it along with its MD5 hash."""
+    """
+    Read the contents of a post's file and return it along with its MD5 hash.
+    """
     with open(filename, 'r') as opened:
         data = opened.read()
         checksum = hashlib.md5(bytes(data.encode('utf-8'))).hexdigest()
@@ -84,7 +92,9 @@ def get_file_data(filename):
 
 
 def format_date(datestring):
-    """Returns a properly formatted date according to the language used."""
+    """
+    Returns a properly formatted date according to the language used.
+    """
     logger.debug(datestring)
     day = datetime.strptime(datestring, "%Y-%m-%d")
     if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
@@ -97,22 +107,27 @@ def format_date(datestring):
 
 
 def update_md(basefile, data, checksum):
-    """Reads a Markdown file and returns a dict with metadata."""
+    """
+    Reads a Markdown file and returns a dict with metadata.
+    """
     html = md.convert(data)
     post = md.Meta
     post['filename'] = basefile
     post['slug'] = slugify(post['title'][0])
     post['checksum'] = checksum
-    post['date'] = post['date'][0]  # For some reason Markdown meta adds an inner list
+    post['date'] = post['date'][0]
     post['form_date'] = format_date(post['date'])
     post['content'] = html
     return post
 
 
 def save_to_cache(post_dict):
-    """Saves the recently updated Markdown in the cache as a JSON file."""
+    """
+    Saves the recently updated Markdown in the cache as a JSON file.
+    """
     meta = json.dumps(post_dict)
-    filename = os.path.join(CACHE_FOLDER, post_dict['filename'][0:-3]) + '.json'
+    postname = post_dict['filename'][0:-3]
+    filename = os.path.join(CACHE_FOLDER, postname) + '.json'
     with open(filename, 'w') as cache:
         cache.write(meta)
 
@@ -123,7 +138,7 @@ def check_new_posts(postlist):
     In any case, it returns a new list with all the posts, updated or not.
     """
     filelist = glob.glob(os.path.join(POSTS_FOLDER, '*.md'))
-    filename_filter = lambda item: item['filename'] == basefile  # noqa
+    def filename_filter(item): item['filename'] == basefile
     for i in filelist:
         data, checksum = get_file_data(i)
         if checksum not in [j['checksum'] for j in postlist]:
@@ -139,10 +154,14 @@ def check_new_posts(postlist):
 
 
 def sort_posts_by_date(postlist):
-    post_filter = lambda item: datetime.strptime(item['date'], "%Y-%m-%d")
-    postlist = sorted(postlist, key=post_filter) 
+    """
+    This is a bugfix. Self-explained.
+    """
+    def post_filter(item): return datetime.strptime(item['date'], "%Y-%m-%d")
+    postlist = sorted(postlist, key=post_filter)
     logger.debug([post['date'] for post in postlist])
     return postlist
+
 
 def get_posts_list(update=False):
     """
@@ -157,10 +176,11 @@ def get_posts_list(update=False):
 
 
 def get_post_from_slug(slug):
-    """Receives an slug string and returns the matching post."""
-    slug_filter = lambda item: item['slug'] == slug  # noqa
+    """
+    Receives an slug string and returns the matching post.
+    """
     posts = get_posts_list()
-    post = next(filter(slug_filter, posts))
+    post = next(filter(lambda item: item['slug'] == slug, posts))
     return post
 
 

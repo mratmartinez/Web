@@ -11,8 +11,6 @@
 	</ul>
 	-->
 	<h2 id="date">{{ post['form_date'] }}</h2>
-        <div class="text">
-            <p>{{ post['content']|safe }}</p>
-        </div>
+        {{ post['content']|safe }}
     </div>
 {% endblock %}
