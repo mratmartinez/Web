@@ -22,7 +22,7 @@ Así que este post se trata de darle un poco de explicación a por qué hago las
 
 En este momento si tengo que definir tecnicamente esta web diría que es solamente una app de Flask que renderiza Markdowns y los muestra estaticamente. Es sencillo, pero hay cosas que ya estoy haciendo y que podría hacer mejor:  
 
-* Estoy guardando los Markdowns en el sistema de archivos a mi manera cuando podría aprovechar algo como Flask-Cache que incluso tiene una solución de cache en sistema de archivos (muy parecido a lo que hago actualmente).  
+* Estoy guardando los Markdowns en el sistema de archivos a mi manera cuando podría aprovechar algo como Flask-Caching que incluso tiene una solución de cache en sistema de archivos (muy parecido a lo que hago actualmente).  
 * Que los posts puedan ser modificados en la web directamente (y/o tener una API para subir desde curl, eso es más canchero).  
 * Que se muestre la última vez que un post fue editado.  
 * El CSS está medio baqueteado con cosas que hice al voleo en 2016.  

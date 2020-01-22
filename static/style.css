@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    letter-spacing: 0.01rem;
+    /* letter-spacing: 0.01rem; */
     font-size: 1.44rem;
 }
 
@@ -15,7 +15,7 @@ h4,
 h5,
 h6 {
     font-weight: inherit;
-    font-family: -apple-system,BlinkMacSystemFont,Avenir,"Avenir Next","Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 body,
@@ -191,3 +191,5 @@ h4 { color: #3A3A3A; }
         width: 85%;
     }
 }
+
+
