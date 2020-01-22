@@ -1,8 +1,5 @@
 html {
-    box-sizing:border-box;
     font-size:67.5%;
-    margin:0;
-    padding:0
 }
 
 body {
@@ -41,6 +38,16 @@ a {
 
 p { color: #454545; }
 
+pre{
+    background: #F4F4F4;
+    border: 1px solid #BCBCBC;
+    border-left: 3px solid #6E6E6E;
+    text-align: left;
+    overflow: auto;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+}
 
 /* Nav */
 .nav {
