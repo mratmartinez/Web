@@ -125,12 +125,12 @@ h4 { color: #3A3A3A; }
 }
 
 /* Lists formatting */
-.content ul, ol {
-    text-align: left;
-    padding-left: 1.5rem;
-}
+.content ul, ol { text-align: left; }
 .content li { margin-top: 0.9rem; }
-.content ul { list-style-type: square; }
+.content ul {
+    list-style-type: square;
+    margin-left: 1em;
+}
 .content ol { counter-reset: item; }
 .content ol li { display: block; }
 .content ol li:before {
@@ -191,5 +191,3 @@ h4 { color: #3A3A3A; }
         width: 85%;
     }
 }
-
-
