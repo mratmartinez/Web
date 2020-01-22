@@ -6,9 +6,7 @@
         {% for post in blog_list %}
         <div class="post postlist-item">
 	    <a href=/post/{{ post['slug'] }}><h3>{{ post['title'][0] }}</h3></a>
-            <div class="text">
-	        <p>{{ post['summary'][0] }}</p>
-            </div>
+	    <p>{{ post['summary'][0] }}</p>
         </div>
         {% endfor %}
     </div>
