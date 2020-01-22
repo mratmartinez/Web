@@ -163,7 +163,7 @@ def sort_posts_by_date(postlist):
     return postlist
 
 
-def get_posts_list(update=False):
+def get_posts_list(update=True):
     """
     Loads only the cached posts, unless the 'update' flag is True.
     In that case, it will check for new posts, even if no changes were made.
