@@ -12,7 +12,7 @@ from datetime import datetime
 
 import unidecode
 from flask import Flask, render_template
-from flask_cache import Cache
+from flask_caching import Cache
 
 from utils import logger
 
