@@ -32,7 +32,7 @@ Este es un excelente momento para aclarar que se pueden usar grillas sin usar Wi
 ### El Markdown
 
 Para el que no sabe lo que es el Makrdown, lo explico rápido y sencillo:  
-Makrdown es un lenguaje de marcado (como HTML) pero que en lugar de usar etiquetas como `<h1>Esto es un header</h1>`, usa alternativas que son más legibles para el ojo humano. Por ejemplo, para separar un parrafo de otro, se deja una línea en blanco. O para marcar un salto luego de una línea, se la finaliza con `  ` (ya sé que no se ve una mierda, son dos espacios).  
+Makrdown es un lenguaje de marcado (como HTML) pero que en lugar de usar etiquetas como `<h1>Esto es un header</h1>`, usa alternativas que son más legibles para el ojo humano. Por ejemplo, para separar un parrafo de otro, se deja una línea en blanco. O para marcar un salto luego de una línea, se agregan dos espacios al final de la misma.  
 
 Personalmente, me encanta la sintaxis para insertar links:
 
@@ -83,7 +83,12 @@ Probablemente te estés preguntando, ¿cuál es el punto de este post?
 Nada. La verdad que hice esta web porque no puede ser programador y no tener una, así que me da un poco de seguridad a la hora de ponerme a mandar CVs.
 
 Tengo 3 planes con este blog para el futuro:  
+
 1. Comenzar una serie de posts sobre como aprender (aunque sea una base) de programación. Tengo muchas amistades a las que me gustaría apuntar en eso.  
 2. Escribir sobre Mapuche. Es una gilada pero me entretiene.  
 3. Ponerlo en mi CV y buscar laburo. Si estás viendo esto y me podés ofrecer un puesto:
+
 ![](/static/help.jpg)
+
+
+**UPDATE**: Me mudé a Buenos Aires y el día que llegué conseguí un laburo de DevOps Engineer. Me siento como Will Smith en esa peli pero sin el hijo. O sea, mejor que Will Smith.
