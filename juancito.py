@@ -23,11 +23,14 @@ locale.setlocale(locale.LC_TIME, config['DEFAULT']['Locale'])
 csv_parse = csv.reader([config['DEFAULT']['MarkdownExtensions']])
 MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
 print(MARKDOWN_EXTENSIONS)
-del(csv_parse)
+del (csv_parse)
 
-md = markdown.Markdown(extensions=['meta']+MARKDOWN_EXTENSIONS,
-                       # Because of a bug
-                       extension_configs={'footnotes': {'BACKLINK_TEXT': ''}})
+md = markdown.Markdown(
+    extensions=['meta'] + MARKDOWN_EXTENSIONS,
+    # Because of a bug
+    extension_configs={'footnotes': {
+        'BACKLINK_TEXT': ''
+    }})
 
 SITE_NAME = config['DEFAULT']['SiteName']
 DEBUG = config['DEFAULT']['Debug']
@@ -56,7 +59,9 @@ def get_cache_files(folder):
 
 def load_cache():
     """Read the posts in CACHE_FOLDER and returns a list with the results."""
-    filelist = [os.path.join(CACHE_FOLDER, i) for i in get_cache_files(CACHE_FOLDER)]
+    filelist = [
+        os.path.join(CACHE_FOLDER, i) for i in get_cache_files(CACHE_FOLDER)
+    ]
     postlist = [json.loads(open(cache, 'r').read()) for cache in filelist]
     return postlist
 
@@ -96,7 +101,8 @@ def update_md(basefile, data, checksum):
 def save_to_cache(post_dict):
     """Saves the recently updated Markdown in the cache as a JSON file."""
     meta = json.dumps(post_dict)
-    filename = os.path.join(CACHE_FOLDER, post_dict['filename'][0:-3]) + '.json'
+    filename = os.path.join(CACHE_FOLDER,
+                            post_dict['filename'][0:-3]) + '.json'
     with open(filename, 'w') as cache:
         cache.write(meta)
 
