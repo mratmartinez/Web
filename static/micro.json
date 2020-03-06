@@ -13,5 +13,10 @@
 		"date":	"2019/12/26",
 		"desc": "Un post del desarrollador de Sway incitando a la gente a tener un blog, ofreciendo 20 dólares como recompensa",
 		"link": "https://drewdevault.com/make-a-blog"
+	},
+	{
+		"date": "2020/02/18",
+		"desc": "Un rant de un tipo hacia el uso de UTF-8 en MySQL",
+		"link": "https://medium.com/@adamhooper/in-mysql-never-use-utf8-use-utf8mb4-11761243e434"
 	}
 ]
