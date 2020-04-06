@@ -3,3 +3,4 @@ Flask==1.1.1
 uWSGI==2.0.18
 Unidecode==1.1.1
 Flask-Caching==1.8.0
+babel==2.8.0
