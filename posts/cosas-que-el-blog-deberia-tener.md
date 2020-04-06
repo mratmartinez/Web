@@ -66,7 +66,7 @@ Evitar el hotlinking, las fuentes de Google o un framework de CSS es lo mismo qu
 
 Como habrá quedado claro, el minimalismo en las funcionalidades y las dependencias no es solo por una cuestión de mantenimiento y preservación, es algo hasta filosófico (ahre). También está la gloriosa satisfacción de saber que comprendés todo tu proyecto y que si se rompe algo vas a tener todo en un solo lugar donde encontrar el problema.
 
-Eso y la tranquilidad de saber que no tengo que pagar AWS.
+Eso, sumado a la tranquilidad de saber que no tengo que pagar AWS.
 
 Y termino el post acá nomás porque me importa todo un carajo.  
 Procuraré escribir un post nuevo cada 2 meses. Es una banda eso para mí, no me apuren.
