@@ -1,4 +1,6 @@
+import re
 import logging
+import unidecode
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
@@ -13,4 +15,3 @@ def slugify(text):
     ascii_text = unidecode.unidecode(text)
     return re.sub(r'[-\s]+', '-',
                   (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
-

@@ -1,21 +1,15 @@
 import os
-import re
 import csv
 import glob
-import json
-import string
-import locale
-import hashlib
 import configparser
-from datetime import datetime
 
 import markdown
-import unidecode
 from flask import Flask, render_template
 from flask_caching import Cache
+from babel.dates import format_date
 
-from utils import logger as LOGGER
 from utils import slugify
+from utils import logger as LOGGER
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
@@ -29,12 +23,6 @@ if DEBUG is True:
     LOGGER.setLevel(10)
 else:
     LOGGER.setLevel(20)
-
-# Working locale
-LOCALE = config['DEFAULT']['Locale']
-LOGGER.info(LOCALE)
-locale.setlocale(locale.LC_TIME, LOCALE)
-
 
 csv_parse = csv.reader([config['DEFAULT']['MarkdownExtensions']])
 MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
@@ -53,21 +41,6 @@ ABOUT_FILE = config['FILESYSTEM']['AboutFile']
 
 
 class Juancito:
-    def format_date(self, datestring):
-        """
-        Returns a properly formatted date according to the language used.
-        """
-        LOGGER.debug(datestring)
-        day = datetime.strptime(datestring, "%Y-%m-%d")
-        if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
-            # In case we are displaying the web in spanish.
-            formatted_day = day.strftime("%A %d de %B de %Y")
-            capitalized_day = string.capwords(formatted_day, " de ")
-        else:
-            capitalized_day = day.strftime("%c")
-        return capitalized_day
-
-
     def format_post(self, data):
         """
         Receives a post metadata and format it properly in order to use it.
@@ -76,7 +49,14 @@ class Juancito:
         post = md.Meta
         post['slug'] = slugify(post['title'][0])
         post['date'] = post['date'][0]
-        post['form_date'] = format_date(post['date'])
+        if post['language'][0] == "ES":
+            locale = "es_AR.UTF-8"
+        else:
+            locale = "en_GB.UTF-8"
+        date = datetime.strptime(post['date'], "%Y-%m-%d")
+        post['form_date'] = format_date(date=date,
+                                        format="full",
+                                        locale=locale)
         post['content'] = html
         return post
 
