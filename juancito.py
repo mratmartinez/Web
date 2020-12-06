@@ -1,7 +1,9 @@
 import os
 import csv
 import glob
+import locale
 import configparser
+from datetime import datetime
 
 import markdown
 from flask import Flask, render_template
@@ -29,13 +31,6 @@ MARKDOWN_EXTENSIONS = [i.strip() for i in list(csv_parse)[0]]
 LOGGER.info(MARKDOWN_EXTENSIONS)
 del(csv_parse)
 
-md = markdown.Markdown(
-    extensions=['meta'] + MARKDOWN_EXTENSIONS,
-    # Because of a bug
-    extension_configs={'footnotes': {
-        'BACKLINK_TEXT': ''
-    }})
-
 SITE_NAME = config['DEFAULT']['SiteName']
 POSTS_FOLDER = config['FILESYSTEM']['PostsFolder']
 CACHE_FOLDER = config['FILESYSTEM']['CacheFolder']
@@ -43,39 +38,26 @@ STATIC_FOLDER = config['FILESYSTEM']['StaticFolder']
 ABOUT_FILE = config['FILESYSTEM']['AboutFile']
 
 
-def slugify(text):
-    """
-    Returns a slug string valid for URLs.
-    """
-    ascii_text = unidecode.unidecode(text)
-    return re.sub(r'[-\s]+', '-',
-                  (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
-
-
-def format_date(datestring):
-    """
-    Returns a properly formatted date according to the language used.
-    """
-    logger.debug(datestring)
-    day = datetime.strptime(datestring, "%Y-%m-%d")
-    if locale.getlocale(locale.LC_TIME)[0] == "es_AR":
-        # In case we are displaying the web in spanish.
-        formatted_day = day.strftime("%A %d de %B de %Y")
-        capitalized_day = string.capwords(formatted_day, " de ")
-    else:
-        capitalized_day = day.strftime("%c")
-    return capitalized_day
-
-
 def format_post(data):
     """
     Receives a post metadata and format it properly in order to use it.
     """
+    get_only = lambda var, key: var[key][0]
+    md = markdown.Markdown(extensions=['meta'] + MARKDOWN_EXTENSIONS)
     html = md.convert(data)
     post = md.Meta
-    post['slug'] = slugify(post['title'][0])
-    post['date'] = post['date'][0]
-    post['form_date'] = format_date(post['date'])
+    for key in ['category', 'author', 'title', 'date', 'language', 'summary']:
+        post[key] = get_only(post, key)
+        LOGGER.debug(post[key])
+    post['slug'] = slugify(post['title'])
+    if post['language'] == "ES":
+        locale = "es_AR.UTF-8"
+    else:
+        locale = "en_GB.UTF-8"
+    date = datetime.strptime(post['date'], "%Y-%m-%d")
+    post['form_date'] = format_date(date=date,
+                                    format="full",
+                                    locale=locale)
     post['content'] = html
     return post
 
@@ -101,7 +83,7 @@ def get_post_from_slug(slug):
     """
     posts = get_postlist()
     post = next(filter(lambda item: item['slug'] == slug, posts))
-    logger.debug((type(post), id(post)))
+    LOGGER.debug((type(post), id(post)))
     return post
 
 
@@ -118,7 +100,7 @@ def get_postlist():
         return datetime.strptime(item['date'], "%Y-%m-%d")
 
     postlist = sorted(postlist, key=post_filter)
-    logger.debug([post['date'] for post in postlist])
+    LOGGER.debug([post['date'] for post in postlist])
     return postlist
 
 
@@ -140,7 +122,9 @@ def post(slug):
 @app.route('/about')
 def about():
     with open(ABOUT_FILE, 'r') as file:
+        md = markdown.Markdown(extensions=['meta'] + MARKDOWN_EXTENSIONS)
         data = file.read()
         content = md.convert(data)
     return render_template("about.html", content=content)
+
 

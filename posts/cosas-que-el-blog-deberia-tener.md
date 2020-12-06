@@ -1,16 +1,14 @@
 ---
-Title:          Cosas que el blog debería tener.
-Summary:        Un post sobre la clase de huevadas que quiero hostear. English TL;DR at the end of the post.
-Author:         Juan Martínez
-Category:       Computers
-Tags:           Web
-                Software Development
-		CSS
-		HTML
-		Python
-		Flask
-Language:       ES
-Date:           2020-01-10
+Title:       Cosas que el blog debería tener.
+Summary:     Un post sobre la clase de huevadas que quiero hostear. English TL;DR at the end of the post.
+Author:      Juan Martínez
+Category:    Computers
+Tags:        Web
+             Software Development
+             Python
+             Flask
+Language:    ES
+Date:        2020-01-10
 ---
 
 Quiero arrancar un lindo año, por eso me voy a poner un toque las pilas con la presentación del blog. No quiero que sea más lindo, quiero que sea lo necesario.  
