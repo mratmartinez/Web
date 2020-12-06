@@ -3,9 +3,10 @@ html {
 }
 
 body {
-    /* letter-spacing: 0.01rem; */
+    /*! letter-spacing: 0.05rem; */
     font-size: 1.44rem;
 }
+
 
 body,
 h1,
@@ -16,6 +17,8 @@ h5,
 h6 {
     font-weight: inherit;
     font-family: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    text-rendering: optimizeLegibility !important;
 }
 
 body,
@@ -23,7 +26,9 @@ h6 { line-height: 2rem; }
 
 h1,
 h2,
-h3 { letter-spacing: -.1rem; }
+h3 { 
+    line-height: 3.5rem;
+}
 
 h2 {
      margin-top: 1.5rem;
@@ -35,17 +40,21 @@ a {
     text-decoration: none;
 }
 
-p { color: #454545; }
+p {
+    color: #454545;
+    font-family: 'Libre Baskerville', sans;
+}
 
 pre {
     background: #F4F4F4;
     border: 1px solid #BCBCBC;
     border-left: 3px solid #6E6E6E;
     text-align: left;
+    word-break: break-all;
     overflow: auto;
     word-break: normal !important;
     word-wrap: normal !important;
-    white-space: pre !important;
+    white-space: pre-wrap !important;
 }
 
 /* Nav */

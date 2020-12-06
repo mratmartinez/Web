@@ -1,14 +1,14 @@
 ---
-Title:		Algunas notas sobre el desarrollo de mi blog (Parte 1)
-Summary:	Un artículo en el que amago con escribir cosas sobre este blog pero al final no digo (casi) nada al respecto.
-Author:		Juan Martínez
-Category:	Computers
-Tags:		Linux
-		Server
-		SSH
-		Web
-Language:	ES
-Date:    2019-05-29
+Title:      Algunas notas sobre el desarrollo de mi blog (Parte 1)
+Summary:    Un artículo en el que amago con escribir cosas sobre este blog pero al final no digo (casi) nada al respecto.
+Author:     Juan Martínez
+Category:   Computers
+Tags:       Linux
+            Server
+            SSH
+            Web
+Language:   ES
+Date:       2019-05-29
 ---
 
 Buenas noches, es de magrugada y estoy empezando este blog (actualmente en Jekyll) porque tengo algo sobre que escribir.

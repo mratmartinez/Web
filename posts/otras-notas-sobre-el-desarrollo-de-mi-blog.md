@@ -1,17 +1,15 @@
 ---
-Title:		Algunas notas sobre el desarrollo de mi blog (Parte 2)
-Summary:	Este sí es posta.
-Author: 	Juan Martínez
-Category:	Computers
-Tags:		Web
-		Software Development
-		CSS
-		HTML
-		Python
-		Flask
-		Django
-Language:	ES
-Date:		2019-10-05
+Title:      Algunas notas sobre el desarrollo de mi blog (Parte 2)
+Summary:    Este sí es posta.
+Author:     Juan Martínez
+Category:   Computers
+Tags:       Web
+            Software Development
+            Python
+            Flask
+            Django
+Language:   ES
+Date:       2019-10-05
 ---
 
 El post anterior no dice nada sobre la web, pero este sí. No tomó mucho tiempo hacerla (en total, re colgué algunos días).
