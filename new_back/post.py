@@ -44,6 +44,9 @@ class PostList(object):
         self._markdown_parser = markdown_parser
         self._posts = []
 
+    def __repr__(self):
+        return repr([post.title for post in self.posts])
+
     @property
     def posts(self):
         return self._posts
