@@ -1,4 +1,7 @@
+import re
 from datetime import date
+
+from unidecode import unidecode
 
 class Post(object):
     def __init__(self, markdown_parser):
@@ -15,7 +18,17 @@ class Post(object):
         return
 
     def __repr__(self):
-        return self.title
+        formatted_date = self.date.strftime('%Y/%m/%d')
+        return f'{self.category}/{formatted_date}/{self.slug}'
+
+    @staticmethod
+    def slugify(text):
+        """
+        Returns a slug string valid for URLs.
+        """
+        ascii_text = unidecode(text)
+        return re.sub(r'[-\s]+', '-',
+                      (re.sub(r'[^\w\s-]', '', ascii_text).strip().lower()))
 
     @property
     def spec(self):
@@ -27,6 +40,10 @@ class Post(object):
             raise Exception('Invalid Spec version')
         self._spec = spec
         return
+
+    @property
+    def slug(self):
+        return self.slugify(self.title)
 
     @classmethod
     def from_metadata(cls, markdown_parser, metadata):
