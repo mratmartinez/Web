@@ -1,4 +1,4 @@
-from types import ModuleType
+from types import ModuleType, FunctionType
 import os
 
 import json
@@ -34,19 +34,19 @@ class Worker(object):
         return worker
 
     @staticmethod
-    def get_filename_filter(extension: str):
+    def get_filename_filter(extension: str) -> FunctionType:
         if not (extension.startswith('.') and len(extension)>1):
             raise Exception(f'{extension} is not a valid extension suffix.')
-        lowercase_extension = extension.lower()
-        def filename_filter(filename: str):
-            lowercase_filename = filename.lower()
+        lowercase_extension: str = extension.lower()
+        def filename_filter(filename: str) -> filter:
+            lowercase_filename: str = filename.lower()
             if (lowercase_filename.endswith(lowercase_extension) and not lowercase_filename.startswith('.')):
                 return True
             return False
         return filename_filter
 
     def filter_root_for_markdown(self):
-        files = os.listdir(self.root_directory)
-        filename_filter = self.get_filename_filter('.md')
-        filtered_files = filter(filename_filter, files)
+        files: list = os.listdir(self.root_directory)
+        filename_filter: FunctionType = self.get_filename_filter('.md')
+        filtered_files: filter = filter(filename_filter, files)
         return filtered_files
