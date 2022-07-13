@@ -4,14 +4,18 @@ import os
 import json
 import markdown
 
+import yaml
+
 class Worker(object):
     def __init__(
             self,
             json_parser: ModuleType = json,
-            markdown_parser: ModuleType = markdown
+            markdown_parser: ModuleType = markdown,
+            yaml_parser: ModuleType = yaml
             ):
         self._json_decoder = json_parser.JSONDecoder()
         self._markdown_parser = markdown_parser.Markdown()
+        self._yaml_parser = yaml_parser
         # Properties
         self._root_directory: str = '.'
         return
@@ -69,7 +73,7 @@ class Worker(object):
             if (version < 1.2):
                 raise Exception('This YAML version is not supported.')
             file.seek(0)
-            yaml_buffer = ''
+            yaml_buffer: str = ''
             for line in file:
                 yaml_buffer += line
                 if (line.strip() == '...'):
@@ -96,3 +100,7 @@ class Worker(object):
             except Exception as e:
                 raise e
         return post_list
+
+    def read_header(self, header: str):
+        parsed_yaml = self._yaml_parser.load(header, Loader=self._yaml_parser.Loader)
+        return parsed_yaml
