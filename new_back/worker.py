@@ -1,7 +1,6 @@
 from types import ModuleType, FunctionType
 import os
 
-import json
 import markdown
 
 import yaml
@@ -9,14 +8,13 @@ import yaml
 class Worker(object):
     def __init__(
             self,
-            json_parser: ModuleType = json,
-            markdown_parser: ModuleType = markdown,
-            yaml_parser: ModuleType = yaml
+            yaml_parser: ModuleType = yaml,
+            markdown_parser: ModuleType = markdown
             ):
-        self._json_decoder = json_parser.JSONDecoder()
-        self._markdown_parser = markdown_parser.Markdown()
         self._yaml_parser = yaml_parser
+        self._markdown_parser = markdown_parser.Markdown()
         # Properties
+        self._posts: list = []
         self._root_directory: str = '.'
         return
 
@@ -35,6 +33,7 @@ class Worker(object):
     def get_worker_for_directory(cls, directory: str):
         worker = cls()
         worker.root_directory = directory
+        worker._posts = worker.get_posts()
         return worker
 
     @staticmethod
@@ -86,6 +85,10 @@ class Worker(object):
         except Exception as e:
             raise e
 
+    def read_header(self, header: str):
+        parsed_yaml = self._yaml_parser.load(header, Loader=self._yaml_parser.Loader)
+        return parsed_yaml
+
     def get_posts(self):
         file_list: list = self.filter_root_for_markdown()
         post_list: list = []
@@ -94,13 +97,10 @@ class Worker(object):
                 file = self.read_file(filename)
                 header, markdown = self.get_file_header(file)
                 post_list.append({
-                    'header': header,
+                    'header': self.read_header(header),
                     'markdown': markdown
                 })
             except Exception as e:
                 raise e
         return post_list
 
-    def read_header(self, header: str):
-        parsed_yaml = self._yaml_parser.load(header, Loader=self._yaml_parser.Loader)
-        return parsed_yaml
