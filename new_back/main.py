@@ -1,7 +1,8 @@
 from worker import Worker
 
 def main():
-    main_worker = Worker()
+    main_worker = Worker.get_worker_for_directory('.')
+    print(main_worker.root_directory)
 
 if __name__ == '__main__':
     main()
