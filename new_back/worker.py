@@ -2,8 +2,9 @@ from types import ModuleType, FunctionType
 import os
 
 import markdown
-
 import yaml
+
+from post import PostList
 
 class Worker(object):
     def __init__(
@@ -14,9 +15,17 @@ class Worker(object):
         self._yaml_parser = yaml_parser
         self._markdown_parser = markdown_parser.Markdown()
         # Properties
-        self._posts: list = []
+        self._posts: PostList = PostList(self._markdown_parser)
         self._root_directory: str = '.'
         return
+
+    @property
+    def posts(self):
+        return self._posts
+
+    @posts.setter
+    def posts(self, post_list):
+        self._posts = PostList.from_list(self._markdown_parser, post_list)
 
     @property
     def root_directory(self):
@@ -33,7 +42,7 @@ class Worker(object):
     def get_worker_for_directory(cls, directory: str):
         worker = cls()
         worker.root_directory = directory
-        worker._posts = worker.get_posts()
+        worker.posts = worker.get_posts()
         return worker
 
     @staticmethod
