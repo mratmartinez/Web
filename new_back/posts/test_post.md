@@ -13,3 +13,5 @@ Tags:
   - CMS
   - YAML
 ...
+
+# Here we would have the title of the post
