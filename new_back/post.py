@@ -14,6 +14,9 @@ class Post(object):
         self.markdown = ''
         return
 
+    def __repr__(self):
+        return self.title
+
     @property
     def spec(self):
         return self._spec
@@ -45,7 +48,7 @@ class PostList(object):
         self._posts = []
 
     def __repr__(self):
-        return repr([post.title for post in self.posts])
+        return repr(self.posts)
 
     @property
     def posts(self):
