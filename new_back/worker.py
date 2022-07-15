@@ -10,12 +10,12 @@ class Worker(object):
     def __init__(
             self,
             yaml_parser: ModuleType = yaml,
-            markdown_parser: ModuleType = markdown
+            markdown_lib: ModuleType = markdown
             ):
         self._yaml_parser = yaml_parser
-        self._markdown_parser = markdown_parser.Markdown()
+        self._markdown_lib = markdown_lib
         # Properties
-        self._posts: PostList = PostList(self._markdown_parser)
+        self._posts: PostList = PostList(self._markdown_lib)
         self._root_directory: str = '.'
         return
 
@@ -25,7 +25,7 @@ class Worker(object):
 
     @posts.setter
     def posts(self, post_list):
-        self._posts = PostList.from_list(self._markdown_parser, post_list)
+        self._posts = PostList.from_list(self._markdown_lib, post_list)
 
     @property
     def root_directory(self):

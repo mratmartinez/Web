@@ -4,17 +4,12 @@ from datetime import date
 from unidecode import unidecode
 
 class Post(object):
-    def __init__(self, markdown_parser):
-        self._markdown_parser = markdown_parser
+    def __init__(self, markdown_lib):
+        self._markdown_lib = markdown_lib
+        self._markdown_parser = self._markdown_lib.Markdown()
         # Properties
-        self._spec = 0.1
-        self.author = ''
-        self.date = date.fromisoformat('2022-07-13')
-        self.title = ''
-        self.description = ''
-        self.category = ''
-        self.tags = []
-        self.markdown = ''
+        self.html = ''
+        self._markdown = ''
         return
 
     def __repr__(self):
@@ -39,6 +34,57 @@ class Post(object):
         if (spec != 0.1): # We don't have a different version yet
             raise Exception('Invalid Spec version')
         self._spec = spec
+        self._markdown_parser = self._markdown_lib.Markdown(
+            extensions=[],
+            extensions_config={},
+            output_format='html',
+            tab_length=4
+        )
+        return
+
+    @property
+    def header(self):
+        return self._header
+
+    @header.setter
+    def header(self, header):
+        self.spec = header['Spec']
+        self._date = header['Date']
+        self._title = header['Title']
+        self._description = header['Description']
+        self._category = header['Category']
+        self._tags = header['Tags']
+        self._header = header
+        return
+
+    @property
+    def date(self):
+        return self._date
+
+    @property
+    def title(self):
+        return self._title
+
+    @property
+    def description(self):
+        return self._description
+
+    @property
+    def category(self):
+        return self._category
+
+    @property
+    def tags(self):
+        return self._tags
+
+    @property
+    def markdown(self):
+        return self._markdown
+
+    @markdown.setter
+    def markdown(self, markdown):
+        self._markdown = markdown
+        self.html = self._markdown_parser.convert(self._markdown)
         return
 
     @property
@@ -48,20 +94,14 @@ class Post(object):
     @classmethod
     def from_metadata(cls, markdown_parser, metadata):
         post = cls(markdown_parser)
-        header = metadata['header']
+        post.header = metadata['header']
         post.markdown = metadata['markdown']
-        post.spec = header['Spec']
-        post.date = header['Date']
-        post.title = header['Title']
-        post.description = header['Description']
-        post.category = header['Category']
-        post.tags = header['Tags']
         return post
 
 
 class PostList(object):
-    def __init__(self, markdown_parser):
-        self._markdown_parser = markdown_parser
+    def __init__(self, markdown_lib):
+        self._markdown_lib = markdown_lib
         self._posts = []
 
     def __repr__(self):
@@ -73,13 +113,12 @@ class PostList(object):
 
     @posts.setter
     def posts(self, post_list):
-        self._posts = [Post.from_metadata(self._markdown_parser, metadata) for metadata in post_list]
+        self._posts = [Post.from_metadata(self._markdown_lib, metadata) for metadata in post_list]
         return
 
     @classmethod
-    def from_list(cls, markdown_parser, post_list):
-        instance = cls(markdown_parser)
+    def from_list(cls, markdown_lib, post_list):
+        instance = cls(markdown_lib)
         instance.posts = post_list
         return instance
-
 
