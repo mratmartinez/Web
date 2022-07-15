@@ -8,8 +8,8 @@ class Post(object):
         self._markdown_lib = markdown_lib
         self._markdown_parser = self._markdown_lib.Markdown()
         # Properties
-        self.html = ''
         self._markdown = ''
+        self._html = ''
         return
 
     def __repr__(self):
@@ -84,8 +84,16 @@ class Post(object):
     @markdown.setter
     def markdown(self, markdown):
         self._markdown = markdown
-        self.html = self._markdown_parser.convert(self._markdown)
+        self._html = self._markdown_parser.convert(self._markdown)
         return
+
+    @property
+    def html(self):
+        return self._html
+
+    @html.setter
+    def html(self, *args):
+        raise Exception('This property isn\'t writable.')
 
     @property
     def slug(self):
