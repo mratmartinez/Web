@@ -104,6 +104,7 @@ class Post(object):
         post = cls(markdown_parser)
         post.header = metadata['header']
         post.markdown = metadata['markdown']
+        post.full = metadata['full']
         return post
 
 
