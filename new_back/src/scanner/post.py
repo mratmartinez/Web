@@ -7,13 +7,12 @@ class Post(object):
     def __init__(self, markdown_lib):
         self._markdown_lib = markdown_lib
         self._markdown_parser = self._markdown_lib.Markdown()
+        self._category = None
+        self._title = None
+        self._date = date.today()
         # Properties
         self._markdown = ''
         self._html = ''
-        # To not break repr
-        self._date = date.today()
-        self._category = ''
-        self._title = ''
         return
 
     def __repr__(self):
