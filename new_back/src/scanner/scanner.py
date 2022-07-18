@@ -4,9 +4,9 @@ import os
 import markdown
 import yaml
 
-from post import PostList
+from .post import PostList
 
-class Worker(object):
+class Scanner(object):
     def __init__(
             self,
             yaml_parser: ModuleType = yaml,
@@ -39,11 +39,11 @@ class Worker(object):
         return
 
     @classmethod
-    def get_worker_for_directory(cls, directory: str):
-        worker = cls()
-        worker.root_directory = directory
-        worker.posts = worker.get_posts()
-        return worker
+    def get_scanner_for_directory(cls, directory: str):
+        scanner = cls()
+        scanner.root_directory = directory
+        scanner.posts = scanner.get_posts()
+        return scanner
 
     @staticmethod
     def get_filename_filter(extension: str) -> FunctionType:

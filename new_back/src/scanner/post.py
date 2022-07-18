@@ -10,6 +10,10 @@ class Post(object):
         # Properties
         self._markdown = ''
         self._html = ''
+        # To not break repr
+        self._date = date.today()
+        self._category = ''
+        self._title = ''
         return
 
     def __repr__(self):
