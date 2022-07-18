@@ -107,7 +107,8 @@ class Worker(object):
                 header, markdown = self.get_file_header(file)
                 post_list.append({
                     'header': self.read_header(header),
-                    'markdown': markdown
+                    'markdown': markdown,
+                    'full': '\\n'.join([header, markdown])
                 })
             except Exception as e:
                 raise e
