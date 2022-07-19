@@ -9,7 +9,7 @@ class MarkdownMock(object):
             pass
 
         def convert(self, markdown):
-            return markdown
+            return markdown.upper()
 
 metadata = {
     'header': {
@@ -21,13 +21,17 @@ metadata = {
         'Tags': ['test', 'example']
     },
     'full': '',
-    'markdown': ''
+    'markdown': '# A test title'
 }
 post = Post.from_metadata(MarkdownMock, metadata)
 
 class TestStringMethods(unittest.TestCase):
     def test_slug(self):
         self.assertEqual(post.slug, 'a-test-post')
+
+    # should call Markdown.convert()
+    def test_html(self):
+        self.assertEqual(post.html, '# A TEST TITLE')
 
 if __name__ == '__main__':
     unittest.main()
