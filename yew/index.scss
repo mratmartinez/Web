@@ -114,7 +114,10 @@ h4 { color: #3A3A3A; }
 /* Postlist settings */
 .postlist a { text-decoration: none !important; }
 
-.postlist-item { border-top: 0.125em solid #3C3E4F; }
+.postlist-item {
+  border-top: 0.125em solid #3C3E4F;
+  list-style-type: none;
+}
 
 .postlist-item:last-child { border-bottom: 0.125em solid #3C3E4F; }
 

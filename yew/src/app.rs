@@ -1,3 +1,5 @@
+mod post_list;
+use post_list::PostList;
 use yew::prelude::*;
 
 #[function_component(App)]
@@ -17,7 +19,7 @@ pub fn app() -> Html {
     html! {
         <main>
             {header}
-            <p>{ "Test" }</p>
+            <PostList/>
         </main>
     }
 }
