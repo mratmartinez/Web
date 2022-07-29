@@ -25,24 +25,34 @@ impl Component for PostList {
     }
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
-        let post = PostListItem {
+        let the_post = PostListItem {
             title: "Post Title".to_string(),
             summary: "This would be the summary.".to_string(),
             url: "/post-test".to_string()
         };
+
+        let another_post = PostListItem {
+            title: "Another Title".to_string(),
+            summary: "This would be another summary.".to_string(),
+            url: "/post-test-2".to_string()
+        };
         
         let post_vector = PostVector {
-            posts: Vec::from([post])
+            posts: Vec::from([the_post, another_post])
         };
 
-        let the_post = post_vector.posts[0].clone();
+        let post_list = post_vector.posts.into_iter().map(|post| {
+            html! {
+                <li class="post postlist-item">
+                    <a href={post.url}><h3>{post.title}</h3></a>
+                    <p>{post.summary}</p>
+                </li>
+            }
+        });
 
         html! {
             <ul class="postlist">
-                <li class="post postlist-item">
-                    <a href={the_post.url}><h3>{the_post.title}</h3></a>
-                    <p>{the_post.summary}</p>
-                </li>
+                {for post_list}
             </ul>
         }
     }
