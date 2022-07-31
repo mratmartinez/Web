@@ -20,7 +20,7 @@ fn main() {
         title: "Post Title 2".to_string(),
         summary: "This would be another summary.".to_string(),
         url: "/post-test-2".to_string()
-    };    
+    };
 
     let post_vector = PostVector {
         posts: Vec::from([post, another_post])
